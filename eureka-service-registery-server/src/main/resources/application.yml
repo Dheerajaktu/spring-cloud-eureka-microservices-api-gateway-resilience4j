@@ -1,0 +1,7 @@
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registery: false
+
+server:
+  port: 8761 #this is default port or eureka server, we can change also.
