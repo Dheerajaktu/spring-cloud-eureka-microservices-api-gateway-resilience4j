@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 //url="PAYMENT-SERVICE/api/payment"
-@FeignClient(name="PAYMENT-SERVICE", path="/api/payment")
+@FeignClient(name="PAYMENT-SERVICE", path="/payment")
 public interface PaymentClient {
 
     @PostMapping("/make-payment")

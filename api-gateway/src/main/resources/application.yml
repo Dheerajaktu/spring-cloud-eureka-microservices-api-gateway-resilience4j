@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 7999
 
 spring:
   application:
@@ -9,21 +9,29 @@ spring:
     gateway:
       routes:
 
-        #ORDER SERVICE ROUTE
+        # ORDER SERVICE ROUTE
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
-            - Path=/order/**
+            - Path=/api/order/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: orderCircuitBreaker
+                fallbackUri: forward:/fallback/order
 
-        #PAYMENT SERVICE ROUTE
+        # PAYMENT SERVICE ROUTE
         - id: payment-service
           uri: lb://PAYMENT-SERVICE
           predicates:
-            - Path=/payment/**
+            - Path=/api/payment/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: paymentCircuitBreaker
+                fallbackUri: forward:/fallback/payment
 
 eureka:
   client:
