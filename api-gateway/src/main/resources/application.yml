@@ -1,9 +1,12 @@
 server:
-  port: 7999
+  port: 7998
 
 spring:
   application:
     name: API-GATEWAY
+
+  config:
+    import: "optional:configserver:http://localhost:7999"
 
   cloud:
     gateway:

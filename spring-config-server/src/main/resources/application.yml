@@ -1,0 +1,21 @@
+server:
+  port: 7999
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git: https://github.com/Dheerajaktu/spring-cloud-eureka-microservices-api-gateway-resilience4j
+
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
