@@ -35,3 +35,6 @@
 
 </dependencies>
 ```
+
+##4: Jaeger UI -> http://localhost:16686/
+<img width="1429" height="842" alt="Screenshot 2026-03-24 at 11 50 29 PM" src="https://github.com/user-attachments/assets/f58bf20a-50f1-451a-ba95-cb9abbb949b9" />
