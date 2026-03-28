@@ -3,11 +3,13 @@ package com.dev.application.catelogService.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Data
 public class DiscountedProductsDto {
     private int id;
     private String name;
@@ -15,5 +17,4 @@ public class DiscountedProductsDto {
     private String color;
     private double price;
     private String discount;
-
 }
