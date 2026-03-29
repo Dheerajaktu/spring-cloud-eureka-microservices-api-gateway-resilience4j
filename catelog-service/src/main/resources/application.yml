@@ -1,24 +1,22 @@
 server:
   port: 8803
+
 spring:
+  application:
+    name: CATELOG-SERVICE
+  datasource:
+    url: jdbc:h2:mem:testdb
   h2:
     console:
       enabled: true
-  datasource:
-    url: jdbc:h2:mem:testdb
-  application:
-    name: CATELOG-SERVICE
   config:
     import: "optional:configserver:http://localhost:7999"
-
-
 
 management:
   tracing:
     enabled: true
     sampling:
       probability: 1.0
-
   otlp:
     tracing:
       endpoint: http://localhost:4318/v1/traces
@@ -26,3 +24,29 @@ management:
 logging:
   pattern:
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+feign:
+  circuitbreaker:
+    enabled: true   # MUST HAVE
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      DISCOUNT-SERVICE:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+  timelimiter:
+    instances:
+      DISCOUNT-SERVICE:
+        timeoutDuration: 2s
+
+
+  retry:
+    instances:
+      DISCOUNT-SERVICE:
+        maxAttempt: 5
+        waitDuration: 10s
